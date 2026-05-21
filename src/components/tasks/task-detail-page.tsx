@@ -287,12 +287,6 @@ export async function TaskDetailPage({ task, slug }: { task: TaskKey; slug: stri
                     <UserCircle2 className="h-4 w-4" />
                     {articleAuthor}
                   </span>
-                  {articleDate ? (
-                    <span className="inline-flex items-center gap-1.5">
-                      <CalendarDays className="h-4 w-4" />
-                      {articleDate}
-                    </span>
-                  ) : null}
                   <Badge variant="secondary" className="inline-flex items-center gap-1">
                     <Tag className="h-3.5 w-3.5" />
                     {category}
@@ -549,41 +543,41 @@ export async function TaskDetailPage({ task, slug }: { task: TaskKey; slug: stri
                 />
               ))}
             </div>
-            </>
-          ) : null}
-          <nav className="mt-6 rounded-2xl border border-border bg-card/60 p-4">
-            <p className="text-sm font-semibold text-foreground">Related links</p>
-            <ul className="mt-2 space-y-2 text-sm">
-              {related.map((item) => (
-                <li key={`link-${item.id}`}>
-                  <Link
-                    href={buildPostUrl(task, item.slug)}
-                    className="text-primary underline-offset-4 hover:underline"
-                  >
-                    {item.title}
-                  </Link>
-                </li>
-              ))}
-              {taskConfig?.route ? (
+            <nav className="mt-6 rounded-2xl border border-border bg-card/60 p-4">
+              <p className="text-sm font-semibold text-foreground">Related links</p>
+              <ul className="mt-2 space-y-2 text-sm">
+                {related.map((item) => (
+                  <li key={`link-${item.id}`}>
+                    <Link
+                      href={buildPostUrl(task, item.slug)}
+                      className="text-primary underline-offset-4 hover:underline"
+                    >
+                      {item.title}
+                    </Link>
+                  </li>
+                ))}
+                {taskConfig?.route ? (
+                  <li>
+                    <Link
+                      href={taskConfig.route}
+                      className="text-primary underline-offset-4 hover:underline"
+                    >
+                      Browse all {taskConfig.label}
+                    </Link>
+                  </li>
+                ) : null}
                 <li>
                   <Link
-                    href={taskConfig.route}
+                    href={`/search?q=${encodeURIComponent(category)}`}
                     className="text-primary underline-offset-4 hover:underline"
                   >
-                    Browse all {taskConfig.label}
+                    Search more in {category}
                   </Link>
                 </li>
-              ) : null}
-              <li>
-                <Link
-                  href={`/search?q=${encodeURIComponent(category)}`}
-                  className="text-primary underline-offset-4 hover:underline"
-                >
-                  Search more in {category}
-                </Link>
-              </li>
-            </ul>
-          </nav>
+              </ul>
+            </nav>
+            </>
+          ) : null}
         </section>
       </main>
       <Footer />

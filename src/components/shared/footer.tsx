@@ -52,7 +52,7 @@ const socialLinks = [
   { name: 'LinkedIn', href: 'https://linkedin.com', icon: Linkedin },
 ]
 
-export function Footer() {
+export async function Footer() {
   if (FOOTER_OVERRIDE_ENABLED) {
     return <FooterOverride />
   }
